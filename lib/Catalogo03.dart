@@ -56,19 +56,18 @@ List<int> hoveredIndices = List<int>.generate(imagensComDescricoes.length, (inde
       children: List.generate(imagens.length, (index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalSpacing),
-          child: Container(
-              width: maxImageSize,
-              height: maxImageSize + 100,
-              decoration: BoxDecoration(
-                border: Border.all(color: hoveredIndices[rowIndex] == index ? Colors.black : Colors.transparent),
-              ),
-          child: Column(
+          child: Card(
+            elevation: hoveredIndices[rowIndex] == index ? 8.0 : 2.0,
+              child: SizedBox(
+                width: maxImageSize,
+                height: maxImageSize + 100,
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
                MouseRegion(
                   onEnter: (_) => setState(() => hoveredIndices[rowIndex] = index),
                   onExit: (_) => setState(() => hoveredIndices[rowIndex] = -1),
-                  child: Image.asset(
+                child: Image.asset(
                 imagens[index],
                 fit: BoxFit.contain, // Ajuste proporcional da imagem
                 width: maxImageSize,
@@ -82,15 +81,26 @@ List<int> hoveredIndices = List<int>.generate(imagensComDescricoes.length, (inde
                   fontFamily: 'Roboto',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                ),
               ),
-            ],
-        ),
-      ),
-     );
-  }),
-  ); 
-}
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: (){
+                      // adicionarAoCarrinho(produto);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    child: const Text('Adicionar ao Carrinho'),
+                    )
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
 }
 
 
@@ -103,11 +113,11 @@ List<List<String>> imagensComDescricoes = [
 ];
 
 List<List<String>> descricoes = [
-  ['Roteador Mikrotik Hex Router Board com Case RB750GR3 R\$439,00', 'Mikrotik Rb450g Routerboard R\$696,00', 'Access Point - Mikrotik RB941-2n R\$209,21'],
+  ['Roteador Mikrotik Hex Router Board RB750GR3 R\$439,00', 'Mikrotik Rb450g Routerboard R\$696,00', 'Access Point - Mikrotik RB941-2n R\$209,21'],
   ['Mini Adaptador Wifi Nano 2.4 Ghz R\$24,90', 'Adaptador USB wireless dual band R\$149,48', 'Adaptador Wireless 300MBPS R\$68,90'],
-  ['D-Link Repetidor Wireless EXO MESH AC 1300Mbps Dualband R\$149,81', 'Homesen Amplif sinal WiFi 300M R\$62,00', 'Repetidor TP-Link Wire 300Mbps R\$ 123,41'],
-  ['TP-Link TL-SG108 Switch Ggbit 8 P R\$360,28', 'Switch TP-Link 5 Portas TL-SF1005D Cor Branco disponivel R\$85,41', 'Switch TP-Link 8 Portas, Gigabit, 2 SFP, Gerenciável - TL-SG3210 R\$768,90'],
-  ['Extensões Mini Hub USB, Expansor USB 3.0 de 4 portas, Hub USB 2.0 R\$28,00', 'Hub Usb 7 Portas 2.0 Hd Extensor Pen Drive Hd Tomate. Cores R\$29,90', 'Bright HUB USB 4 PORTAS 3.0 R\$55,30'],
+  ['D-Link Repetidor Wireless R\$149,81', 'Homesen Amplif sinal WiFi 300M R\$62,00', 'Repetidor TP-Link Wire 300Mbps R\$ 123,41'],
+  ['TP-Link TL-SG108 Switch Ggbit 8 P R\$360,28', 'Switch TP-Link 5 Portas TL- R\$85,41', 'Switch TP-Link 8 Portas, Gigabit, 2 R\$768,90'],
+  ['Extensões Mini Hub USB, Expansor R\$28,00', 'Hub Usb 7 Portas 2.0 Hd Extensor R\$29,90', 'Bright HUB USB 4 PORTAS 3.0 R\$55,30'],
 ];
 
 
